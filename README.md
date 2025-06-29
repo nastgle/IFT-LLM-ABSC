@@ -20,8 +20,7 @@ zeroshot:fewshot(temperature)/
 ## Techniques and Tools Used
 
 - **Meta Llama 3 models** – Experiments use models hosted on the Hugging Face Hub.
-- **LoRA (Low-Rank Adaptation)** via the [PEFT](https://github.com/huggingface/peft) library for parameter‑efficient fine-tuning.
-- **Modal** – All heavy jobs (model download, training and testing) run remotely on Modal GPU instances and use a network file system volume for persistence.
+- **Modal** – All heavy jobs (model download, finetuning training and testing) run remotely on Modal GPU instances and use a network file system volume for persistence.
 - **Datasets** – SemEval 2014/2015/2016 ABSA datasets are converted from XML to CSV for model evaluation. A custom instruction dataset is assembled into JSONL for fine‑tuning.
 - **Python libraries** – `transformers`, `torch`, `datasets`, `peft`, `trl`, `bitsandbytes`, `accelerate`, `scikit-learn`, and `tensorboard`.
 
@@ -37,8 +36,7 @@ zeroshot:fewshot(temperature)/
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
-   cd Nastya
+   git clone ttps://github.com/nastgle/Instruction-finetuning-ABSA
    ```
 2. **Install the dependencies**
    ```bash
