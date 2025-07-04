@@ -13,7 +13,7 @@ finetuning(temperature)/
 └── modelTesting/           # Evaluate the fine-tuned adapter
 
 zeroshot:fewshot(temperature)/
-├── data/                   # Raw XML datasets and converted CSVs
+├── data/                   # Raw XML datasets, converted CSVs, and prepared embeddings tables for simSCE
 └── main.ipynb              # Preprocessing and zero/few-shot experiments
 ```
 
