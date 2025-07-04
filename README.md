@@ -102,7 +102,7 @@ This job loads the base model and the LoRA adapter, merges them for inference an
 
 ### 5. Zero‑Shot/Few‑Shot Experiments
 
-The notebook in `zeroshot:fewshot(temperature)/main.ipynb` demonstrates XML → CSV conversion and evaluation of public Llama models via the Hugging Face Inference API.  Run the notebook in Jupyter and supply your Hugging Face token when prompted.
+The notebook in `zeroshot-fewshot(temperature)/main.ipynb` demonstrates XML → CSV → Embeddings conversion and evaluation of public Llama models via the Hugging Face Inference API.  Run the notebook in Jupyter and supply your Hugging Face token when prompted.
 
 ## Notes
 
