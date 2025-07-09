@@ -42,15 +42,15 @@ def download_model_to_cache():
             local_dir_use_symlinks=False,
         )
 
-        print("\n✅ Success! Model files are downloaded and cached in the volume.")
+        print("\n Success! Model files are downloaded and cached in the volume.")
         print(f"  - Volume Name: {VOLUME_NAME}")
         print(f"  - Cached to Path: {CACHE_PATH}")
 
     except Exception as e:
-        print(f"\n❌ An error occurred: {e}")
+        print(f"\n An error occurred: {e}")
         raise e
 
 @app.local_entrypoint()
 def main():
-    print("🚀 Launching remote job to download and cache the model...")
+    print(" Launching remote job to download and cache the model...")
     download_model_to_cache.remote()
