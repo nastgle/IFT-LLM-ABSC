@@ -49,7 +49,7 @@ def train_lora_model():
 
     print(f"Found data files: {data_files}")
     dataset = load_dataset("json", data_files=data_files, split="train")
-    print("✅ Dataset loaded successfully from volume.")
+    print(" Dataset loaded successfully from volume.")
 
     # --- 2. Tokenizer Loading (MOVED UP) ---
     # The tokenizer must be loaded before it can be used in the formatting function.
@@ -59,7 +59,7 @@ def train_lora_model():
     )
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
-    print("✅ Tokenizer loaded successfully.")
+    print(" Tokenizer loaded successfully.")
 
     # --- 3. Llama 3 Chat Template Formatting Section ---
     # This function now has access to the 'tokenizer' defined above.
@@ -72,7 +72,7 @@ def train_lora_model():
 
     # Apply the formatting function to the entire dataset
     dataset = dataset.map(create_prompt)
-    print("✅ Dataset formatted with Llama 3 chat template.")
+    print(" Dataset formatted with Llama 3 chat template.")
 
     # --- 4. Model Loading Section ---
     compute_dtype = getattr(torch, "float16")
@@ -88,7 +88,7 @@ def train_lora_model():
     )
     model.config.use_cache = False
     model.config.pretraining_tp = 1
-    print("✅ Model loaded successfully.")
+    print(" Model loaded successfully.")
 
 
     # --- 5. Training Configuration ---
@@ -130,13 +130,13 @@ def train_lora_model():
         # tokenizer=tokenizer, 
     )
 
-    print("🚀 Starting LoRA fine-tuning...")
+    print(" Starting LoRA fine-tuning...")
     trainer.train()
-    print("✅ LoRA training complete.")
+    print(" LoRA training complete.")
 
     trainer.model.save_pretrained(final_adapter_path)
     tokenizer.save_pretrained(final_adapter_path)
-    print(f"✅ LoRA adapter saved to: {final_adapter_path} on the volume.")
+    print(f" LoRA adapter saved to: {final_adapter_path} on the volume.")
 
 @app.local_entrypoint()
 def main():
@@ -144,7 +144,7 @@ def main():
     local_data_dir = Path(".")
     local_jsonl_files = list(local_data_dir.glob("*.jsonl"))
     if not local_jsonl_files:
-        print("❌ No local '.jsonl' files found. Please place your dataset file (e.g., 'data.jsonl') in the same directory as the script.")
+        print(" No local '.jsonl' files found. Please place your dataset file (e.g., 'data.jsonl') in the same directory as the script.")
         return
 
     print(f" Detected {len(local_jsonl_files)} JSONL file(s). Uploading to volume...")
@@ -157,5 +157,5 @@ def main():
         with open(local_path, "rb") as f:
             volume.write_file(str(remote_path), f) # This will create the directory if needed
 
-    print("\n🚀 Launching remote LoRA fine-tuning job on Modal...")
+    print("\n Launching remote LoRA fine-tuning job on Modal...")
     train_lora_model.remote()
