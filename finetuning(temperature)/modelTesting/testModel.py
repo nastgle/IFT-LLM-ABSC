@@ -73,7 +73,7 @@ def test_model():
     # 3. Merge the adapter into the model for faster inference
     print("Merging adapter...")
     model = model.merge_and_unload()
-    print("✅ Model and adapter merged successfully.")
+    print(" Model and adapter merged successfully.")
 
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL_ID, trust_remote_code=True)
     tokenizer.pad_token = tokenizer.eos_token
@@ -162,9 +162,9 @@ def main():
         local_path = Path(dataset_dir) / "data_validation.csv"
         if local_path.exists():
             files_to_upload.append(local_path)
-            print(f"  ✅ Found: {local_path}")
+            print(f"   Found: {local_path}")
         else:
-            print(f"  ❌ Not found: {local_path}")
+            print(f"   Not found: {local_path}")
 
     if not files_to_upload:
         print("\nCould not find any validation files. Please ensure the directories exist.")
@@ -180,5 +180,5 @@ def main():
         with open(path, "rb") as f:
             volume.write_file(remote_path_str, f)
 
-    print("\n🚀 Launching remote model evaluation job on Modal...")
+    print("\n Launching remote model evaluation job on Modal...")
     test_model.remote()
